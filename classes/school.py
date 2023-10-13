@@ -1,18 +1,23 @@
-from classes.staff import Staff
 from classes.student import Student
+from classes.staff import Staff
 
 class School:
-    def __init__(self, name):
+    def __init__(self, name) -> None:
         self.name = name
-        self.staff = Staff.objects()
-        self.students = Student.objects()
+        self.staff = Staff.load_staff()
+        self.students = Student.load_students()
 
-    def list_students(self):
-        print('\n')
-        for i, student in enumerate(self.students):
-            print(f'{i + 1}. {student.name} {student.school_id}')
-
-    def find_student_by_id(self, student_id):
+    @property
+    def get_students(self):
+        i = 1
+        print("\n---ALL STUDENTS---")
         for student in self.students:
-            if student.school_id == student_id:
-                return student
+            print(f"{i}. {student['name']} {student['school_id']}")
+
+    def get_student_by_id(self, school_id):
+        for student in self.students:
+            if student['school_id'] == school_id:
+                return f"\n{student['name'].upper()}\n------------\nAge: {student['age']}\nID: {student['school_id']}"
+    
+    def add_student(self, student_data):
+        self.students.append(student_data)
