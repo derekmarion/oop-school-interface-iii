@@ -26,6 +26,9 @@ def start_school_interactive():
                 student_data['password']  = input('Enter student password:')
                 
                 school.add_student(student_data)
+            case "4":
+                school_id = input("Enter student id of record you want to delete:")
+                school.delete_student(school_id)
             case "5":
                 running = False
 

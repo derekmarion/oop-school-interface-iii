@@ -13,6 +13,7 @@ class School:
         print("\n---ALL STUDENTS---")
         for student in self.students:
             print(f"{i}. {student['name']} {student['school_id']}")
+            i += 1
 
     def get_student_by_id(self, school_id):
         for student in self.students:
@@ -21,3 +22,8 @@ class School:
     
     def add_student(self, student_data):
         self.students.append(student_data)
+
+    def delete_student(self,school_id):
+        for student in self.students:
+            if student['school_id'] == school_id:
+                self.students.remove(student)
